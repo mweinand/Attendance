@@ -37,18 +37,4 @@ class Module
             ),
         );
     }
-    
-    public function getServiceConfig()
-    {
-        return array(
-            'factories' => array(
-                'Application\Model\UserTable' =>  function($sm) {
-                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
-                    $table     = new UserTable($dbAdapter);
-                    return $table;
-                },
-            ),
-        );
-    }
-
 }

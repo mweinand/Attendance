@@ -1,4 +1,6 @@
 <div>
 	<input type="text" id="ScanInput" />
-	<?php echo $users; ?>
+	<?php foreach($users as $user): ?>
+		<?php echo $user->firstName; ?>
+	<?php endforeach; ?>
 </div>

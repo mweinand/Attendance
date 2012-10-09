@@ -55,6 +55,11 @@ return array(
     'service_manager' => array(
         'factories' => array(
             'translator' => 'Zend\I18n\Translator\TranslatorServiceFactory',
+			'Application\Model\UserTable' =>  function($sm) {
+                $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                $table     = new Application\Model\UserTable($dbAdapter);
+                return $table;
+            },
         ),
     ),
     'translator' => array(

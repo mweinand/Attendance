@@ -11,10 +11,9 @@ class UserTable extends DbTable
 
     public function __construct(Adapter $adapter)
     {
-        $this->adapter = $adapter;
+        parent::__construct($adapter);
 
-        $this->resultSetPrototype = new ResultSet();
-        $this->resultSetPrototype->setArrayObjectPrototype(new Album());
+		$this->resultSetPrototype->setArrayObjectPrototype(new User());
 
-        $this->initialize();
+		$this->initialize();
     }

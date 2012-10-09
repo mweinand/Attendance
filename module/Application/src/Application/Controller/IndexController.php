@@ -17,15 +17,20 @@ class IndexController extends AbstractActionController
 {
 	protected $userTable;
 
-	public function __construct(Application\Model\UserTable $userTable) {
-		var_dump($userTable);
-		$this->userTable = $userTable;
+	public function __construct() {
+	}
+
+	public function getUserTable() {
+		
+		$test = $this->getServiceLocator();
+		$this->userTable = $test->get('Application\Model\UserTable');
+		return $this->userTable;
 	}
 
 	public function indexAction()
 	{
 		return new ViewModel(array(
-			'users' => $this->userTable->fetchAll()
+			'users' => $this->getUserTable()->fetchAll()
 		));
 	}
 
