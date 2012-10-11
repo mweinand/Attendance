@@ -12,6 +12,9 @@ namespace Application\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Zend\View\Model\JsonModel;
+use Application\Model\User;
+use Application\Form\UserEnrollForm;
+use Application\Form\UserEnrollFormValidation;
 
 class IndexController extends AbstractActionController
 {
@@ -39,5 +42,27 @@ class IndexController extends AbstractActionController
 			'result' => 1,
 			'direction' => 1
 		));
+	}
+
+	public function enrollAction() {
+		$form = new UserEnrollForm();
+		
+		$request = $this->getRequest();
+		if($request->isPost()) {
+			$user = new User();
+			$userEnrollValidator = new UserEnrollFormValidation();
+			$form->setInputFilter($userEnrollValidator->getInputFilter());
+			$form->setData($request->getPost());
+
+			if($form->isValid()) {
+				$user->exchangeArray($form->getData());
+				var_dump($user);
+				$this->getUserTable()->save($user);
+
+				$form->setData(array());
+			}
+		}
+
+		return array('form' => $form);
 	}
 }

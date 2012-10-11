@@ -46,18 +46,14 @@ class DbTable extends AbstractTableGateway
         ));
     }
 
-    public function saveAlbum(Album $album)
+    public function save(IEntity $entity)
     {
-        $data = array(
-            'artist' => $album->artist,
-            'title'  => $album->title,
-        );
-
-        $id = (int) $album->id;
+        $id = (int) $entity->id;
+		$data = $entity->toArray();
 
         if ($id == 0) {
             $this->insert($data);
-        } elseif ($this->getAlbum($id)) {
+        } elseif ($this->findById($id)) {
             $this->update(
                 $data,
                 array(
@@ -65,7 +61,7 @@ class DbTable extends AbstractTableGateway
                 )
             );
         } else {
-            throw new \Exception('Form id does not exist');
+            throw new \Exception('ID does not exist');
         }
     }
 }

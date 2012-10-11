@@ -1,0 +1,23 @@
+<?php
+
+$title = 'Enroll New User';
+$this->headTitle($title);
+
+?>
+
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+<?php
+$form = $this->form;
+$form->prepare();
+
+echo $this->form()->openTag($form);
+
+echo $this->formHidden($form->get('id'));
+echo $this->formRow($form->get('serial'));
+echo $this->formRow($form->get('firstName'));
+echo $this->formRow($form->get('lastName'));
+echo $this->formSubmit($form->get('submit'));
+
+echo $this->form()->closeTag($form);
+
+?>

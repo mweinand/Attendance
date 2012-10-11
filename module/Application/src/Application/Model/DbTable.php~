@@ -5,7 +5,7 @@ use Zend\Db\Adapter\Adapter;
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\AbstractTableGateway;
 
-class UserTable extends AbstractTableGateway
+class DbTable extends AbstractTableGateway
 {
     protected $table ='user';
 
@@ -46,18 +46,14 @@ class UserTable extends AbstractTableGateway
         ));
     }
 
-    public function saveAlbum(Album $album)
+    protected function save(IEntity $entity)
     {
-        $data = array(
-            'artist' => $album->artist,
-            'title'  => $album->title,
-        );
-
-        $id = (int) $album->id;
+        $id = (int) $entity->id;
+		$data = $entity->toArray();
 
         if ($id == 0) {
             $this->insert($data);
-        } elseif ($this->getAlbum($id)) {
+        } elseif ($this->findById($id)) {
             $this->update(
                 $data,
                 array(
@@ -65,7 +61,7 @@ class UserTable extends AbstractTableGateway
                 )
             );
         } else {
-            throw new \Exception('Form id does not exist');
+            throw new \Exception('ID does not exist');
         }
     }
 }
