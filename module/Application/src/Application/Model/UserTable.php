@@ -4,6 +4,7 @@ namespace Application\Model;
 use Zend\Db\Adapter\Adapter;
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\AbstractTableGateway;
+use Zend\Db\Sql\Select;	
 
 class UserTable extends DbTable
 {
@@ -16,5 +17,27 @@ class UserTable extends DbTable
 		$this->resultSetPrototype->setArrayObjectPrototype(new User());
 
 		$this->initialize();
+    }
+    
+    public function findBySerial($serial)
+    {
+        $rowset = $this->select(array(
+            'serial' => $serial,
+        ));
+
+        $row = $rowset->current();
+
+        if (!$row) {
+            return null;
+        }
+
+        return $row;
+    }
+    
+    public function getSignedInUsers()
+    {
+    		return $this->select(function (Select $select) {
+    			$select->where->isNotNull('currentEntry');
+    		});
     }
 }

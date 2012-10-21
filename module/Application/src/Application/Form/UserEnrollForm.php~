@@ -28,7 +28,17 @@ class UserEnrollForm extends Form
 		));
 
 		$this->add(array(
-			'name' => 'first_name',
+			'name' => 'serial2',
+			'attributes' => array(
+				'type' => 'text'
+			),
+			'options' => array(
+				'label' => 'Confirm'
+			)
+		));
+
+		$this->add(array(
+			'name' => 'firstName',
 			'attributes' => array(
 				'type' => 'text'
 			),
@@ -38,7 +48,7 @@ class UserEnrollForm extends Form
 		));
 
 		$this->add(array(
-			'name' => 'last_name',
+			'name' => 'lastName',
 			'attributes' => array(
 				'type' => 'text'
 			),

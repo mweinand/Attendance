@@ -6,9 +6,9 @@ use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\AbstractTableGateway;
 
 class DbTable extends AbstractTableGateway
-{
-    protected $table ='user';
-
+{	
+    protected $table;
+	
     public function __construct(Adapter $adapter)
     {
         $this->adapter = $adapter;
@@ -52,7 +52,9 @@ class DbTable extends AbstractTableGateway
 		$data = $entity->toArray();
 
         if ($id == 0) {
-            $this->insert($data);
+				$this->insert($data);
+				$entity->setId($this->getLastInsertValue());
+            
         } elseif ($this->findById($id)) {
             $this->update(
                 $data,

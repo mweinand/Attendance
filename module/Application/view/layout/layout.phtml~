@@ -3,7 +3,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <?php echo $this->headTitle('ZF2 '. $this->translate('Skeleton Application'))->setSeparator(' - ')->setAutoEscape(false) ?>
+        <?php echo $this->headTitle('Team 537 '. $this->translate('Attendance Application'))->setSeparator(' - ')->setAutoEscape(false) ?>
 
         <?php echo $this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1.0') ?>
 
@@ -16,7 +16,7 @@
         <!-- Scripts -->
         <?php echo $this->headScript()->prependFile($this->basePath() . '/js/html5.js', 'text/javascript', array('conditional' => 'lt IE 9',))
                                       ->prependFile($this->basePath() . '/js/jquery-1.7.2.min.js')
-                                      ->prependFile($this->basePath() . '/js/attendance.js') ?>
+                                      ->appendFile($this->basePath() . '/js/attendance.js') ?>
     </head>
     <body>
         <div class="navbar navbar-fixed-top">
@@ -27,10 +27,11 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </a>
-                    <a class="brand" href="<?php echo $this->url('home') ?>"><?php echo $this->translate('Skeleton Application') ?></a>
+                    <a class="brand" href="<?php echo $this->url('home') ?>"><?php echo $this->translate('Attendance Application') ?></a>
                     <div class="nav-collapse">
                         <ul class="nav">
-                            <li class="active"><a href="<?php echo $this->url('home') ?>"><?php echo $this->translate('Home') ?></a></li>
+                            <li><a href="<?php echo $this->url('home') ?>"><?php echo $this->translate('Home') ?></a></li>
+                            <li><a href="<?php echo $this->url('application/default', array('action' => 'enroll', 'controller' => 'index')) ?>"><?php echo $this->translate('Enroll') ?></a></li>
                         </ul>
                     </div><!--/.nav-collapse -->
                 </div>

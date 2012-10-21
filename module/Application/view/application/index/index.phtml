@@ -1,6 +1,11 @@
 <div>
-	<input type="text" id="ScanInput" />
-	<?php foreach($users as $user): ?>
-		<?php echo $user->firstName; ?>
+	<input type="text" id="ScanInput" />	
+</div>
+<div>
+	<h2>Logged In</h2>
+	<ul>
+	<?php foreach($this->users as $user): ?>
+	<li><?php echo $user->firstName; ?> <?php echo $user->lastName; ?></li>
 	<?php endforeach; ?>
+	</ul>
 </div>

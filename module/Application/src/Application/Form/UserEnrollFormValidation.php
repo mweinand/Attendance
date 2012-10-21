@@ -85,6 +85,21 @@ class UserEnrollFormValidation implements InputFilterAwareInterface
 						)
 					)
 				)
+			)));			
+			
+			$inputFilter->add($factory->createInput(array(
+				'name' => 'serial2',
+				'required' => true,
+				'filters' => array(
+					array('name' => 'StripTags'),
+					array('name' => 'StringTrim'),
+				),
+				'validators' => array(
+					array(
+						'name' => 'identical',
+						'options' => array('token' => 'serial')
+					)
+				)
 			)));
 
 			$this->inputFilter = $inputFilter;

@@ -60,6 +60,11 @@ return array(
                 $table     = new Application\Model\UserTable($dbAdapter);
                 return $table;
             },
+			'Application\Model\TimesheetTable' =>  function($sm) {
+                $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                $table     = new Application\Model\TimesheetTable($dbAdapter);
+                return $table;
+            }
         ),
     ),
     'translator' => array(

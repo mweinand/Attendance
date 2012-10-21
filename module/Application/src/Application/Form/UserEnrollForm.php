@@ -28,6 +28,16 @@ class UserEnrollForm extends Form
 		));
 
 		$this->add(array(
+			'name' => 'serial2',
+			'attributes' => array(
+				'type' => 'text'
+			),
+			'options' => array(
+				'label' => 'Confirm'
+			)
+		));
+
+		$this->add(array(
 			'name' => 'firstName',
 			'attributes' => array(
 				'type' => 'text'

@@ -8,17 +8,17 @@ $(document).ready(function() {
 		scanInput.val('');
 	};
 
-	var showError = function() {
+	var showError = function(direction) {
 		scanInput.css('background-color', '#F00');
 		setTimeout(resetForm, 500);
 	};
 
-	var showSuccess = function() {
+	var showSuccess = function(direction) {
 		scanInput.css('background-color', '#0F0');
 		setTimeout(resetForm, 500);
 	};
 
-	var verifyQuickLogout = function() {
+	var verifyQuickAction = function(direction) {
 		if(confirm('You just logged in.  Are you sure you want to logout?')) {
 			
 		}
