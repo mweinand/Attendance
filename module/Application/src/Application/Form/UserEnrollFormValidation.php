@@ -81,7 +81,7 @@ class UserEnrollFormValidation implements InputFilterAwareInterface
 						'options' => array(
 							'encoding' => 'UTF-8',
 							'min' => 1,
-							'max' => 16
+							'max' => 64
 						)
 					)
 				)

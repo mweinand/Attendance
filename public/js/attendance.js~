@@ -1,21 +1,29 @@
 $(document).ready(function() {
 
 	var scanInput = $("#ScanInput");
+	var statusMessage = $('#StatusMessage');
+	var checking = false;
+	var delay = 1000;
 
 	var resetForm = function() {
 		scanInput.css('background-color', '#FFF');
 		scanInput.prop('disabled', false);
 		scanInput.val('');
+		scanInput.focus();
 	};
 
 	var showError = function(direction) {
 		scanInput.css('background-color', '#F00');
-		setTimeout(resetForm, 500);
+		statusMessage.css('color', '#F00');
+		statusMessage.text('Invalid User');
+		setTimeout(resetForm, delay);
 	};
 
-	var showSuccess = function(direction) {
+	var showSuccess = function(direction, user) {
 		scanInput.css('background-color', '#0F0');
-		setTimeout(resetForm, 500);
+		statusMessage.css('color', '#0F0');
+		statusMessage.text(user);
+		setTimeout(resetForm, delay);
 	};
 
 	var verifyQuickAction = function(direction) {
@@ -23,6 +31,11 @@ $(document).ready(function() {
 			
 		}
 	};
+	
+	scanInput.focus(function() {
+		statusMessage.css('color', '#000');
+		statusMessage.text('Ready');
+	});	
 
 	scanInput.keypress(function(e) {
 		if(e.which == 13) {
@@ -42,7 +55,7 @@ $(document).ready(function() {
 							showError(data.direction);
 							break;
 						case 1:
-							showSuccess(data.direction);
+							showSuccess(data.direction, data.user);
 							break;
 						case 2:
 							break;
